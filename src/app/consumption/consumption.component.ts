@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ConsumptionType } from '../types/consumption.type';
 
 @Component({
@@ -8,11 +8,11 @@ import { ConsumptionType } from '../types/consumption.type';
 })
 export class ConsumptionComponent implements OnInit {
   @Input() consumption: ConsumptionType | undefined;
+  @Output() onDelete = new EventEmitter<number>();
 
   constructor() {}
 
   deleteConsumption() {
-    console.log('deleting...');
     if (this.consumption !== undefined) {
       const consumptionsString =
         window.localStorage.getItem('bp__Consumptions');
@@ -28,8 +28,7 @@ export class ConsumptionComponent implements OnInit {
           })
         )
       );
-      console.log('deleted');
-      location.reload();
+      this.onDelete.emit(this.consumption.id);
     }
   }
 

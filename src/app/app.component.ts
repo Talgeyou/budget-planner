@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
   income: number = 0;
   incomeCurrency: 'RUB' | 'USD' | 'EUR' = 'RUB';
   incomePeriod: 'Daily' | 'Monthly' | 'Annualy' = 'Monthly';
+  moneyLeftPeriod: 'Daily' | 'Monthly' | 'Annualy' = 'Monthly';
   leftRUB: number = 0;
   leftUSD: number = 0;
   leftEUR: number = 0;
@@ -34,10 +35,20 @@ export class AppComponent implements OnInit {
   USDRUBRate = 0;
   USDEURRate = 0;
 
-  EURRUBRate = 0;
-  EURUSDRate = 0;
-  RUBUSDRate = 0;
-  RUBEURRate = 0;
+  currencyExchangeRates = {
+    USD: {
+      RUB: 0,
+      EUR: 0,
+    },
+    RUB: {
+      USD: 0,
+      EUR: 0,
+    },
+    EUR: {
+      RUB: 0,
+      USD: 0,
+    },
+  };
 
   constructor(private currencyService: CurrencyService) {
     const consumptions = window.localStorage.getItem('bp__Consumptions');
@@ -60,7 +71,7 @@ export class AppComponent implements OnInit {
               value:
                 item1.value +
                 (item2.period === 'Daily'
-                  ? item2.value * 30
+                  ? (item2.value * 365) / 12
                   : item2.period === 'Annualy'
                   ? item2.value / 12
                   : item2.value),
@@ -82,7 +93,7 @@ export class AppComponent implements OnInit {
               value:
                 item1.value +
                 (item2.period === 'Daily'
-                  ? item2.value * 30
+                  ? (item2.value * 365) / 12
                   : item2.period === 'Annualy'
                   ? item2.value / 12
                   : item2.value),
@@ -104,7 +115,7 @@ export class AppComponent implements OnInit {
               value:
                 item1.value +
                 (item2.period === 'Daily'
-                  ? item2.value * 30
+                  ? (item2.value * 365) / 12
                   : item2.period === 'Annualy'
                   ? item2.value / 12
                   : item2.value),
@@ -120,7 +131,7 @@ export class AppComponent implements OnInit {
     ).value;
   }
 
-  exchangeRates(value?: number, rate?: number) {
+  exchangeCurrency(value?: number, rate?: number) {
     if (value !== undefined && rate !== undefined) {
       return value / rate;
     }
@@ -128,45 +139,77 @@ export class AppComponent implements OnInit {
   }
 
   calculateLeftMoney(
-    value: number,
-    currency: 'RUB' | 'USD' | 'EUR',
+    incomeValue: number,
+    incomeCurrency: 'RUB' | 'USD' | 'EUR',
+    incomePeriod: 'Daily' | 'Monthly' | 'Annualy',
     period: 'Daily' | 'Monthly' | 'Annualy'
   ) {
-    switch (currency) {
+    switch (incomeCurrency) {
       case 'RUB':
         this.leftRUB =
-          period === 'Daily'
-            ? value * 30 - this.totalRUB
-            : period === 'Annualy'
-            ? value / 12 - this.totalRUB
-            : value - this.totalRUB;
-        this.leftUSD = this.exchangeRates(this.leftRUB, this.USDRUBRate);
-        this.leftEUR = this.exchangeRates(this.leftRUB, this.EURRUBRate);
+          incomePeriod === 'Daily'
+            ? (incomeValue * 365) / 12 - this.totalRUB
+            : incomePeriod === 'Annualy'
+            ? incomeValue / 12 - this.totalRUB
+            : incomeValue - this.totalRUB;
+        this.leftUSD = this.exchangeCurrency(
+          this.leftRUB,
+          this.currencyExchangeRates.USD.RUB
+        );
+        this.leftEUR = this.exchangeCurrency(
+          this.leftRUB,
+          this.currencyExchangeRates.EUR.RUB
+        );
         break;
       case 'USD':
         this.leftUSD =
-          period === 'Daily'
-            ? value * 30 - this.totalUSD
-            : period === 'Annualy'
-            ? value / 12 - this.totalUSD
-            : value - this.totalUSD;
-        this.leftRUB = this.exchangeRates(this.leftUSD, this.RUBUSDRate);
-        this.leftEUR = this.exchangeRates(this.leftUSD, this.EURUSDRate);
+          incomePeriod === 'Daily'
+            ? (incomeValue * 365) / 12 - this.totalUSD
+            : incomePeriod === 'Annualy'
+            ? incomeValue / 12 - this.totalUSD
+            : incomeValue - this.totalUSD;
+        this.leftRUB = this.exchangeCurrency(
+          this.leftUSD,
+          this.currencyExchangeRates.RUB.USD
+        );
+        this.leftEUR = this.exchangeCurrency(
+          this.leftUSD,
+          this.currencyExchangeRates.EUR.USD
+        );
         break;
       case 'EUR':
         this.leftEUR =
-          period === 'Daily'
-            ? value * 30 - this.totalEUR
-            : period === 'Annualy'
-            ? value / 12 - this.totalEUR
-            : value - this.totalEUR;
-        this.leftUSD = this.exchangeRates(this.leftEUR, this.USDEURRate);
-        this.leftRUB = this.exchangeRates(this.leftEUR, this.RUBEURRate);
+          incomePeriod === 'Daily'
+            ? (incomeValue * 365) / 12 - this.totalEUR
+            : incomePeriod === 'Annualy'
+            ? incomeValue / 12 - this.totalEUR
+            : incomeValue - this.totalEUR;
+        this.leftUSD = this.exchangeCurrency(
+          this.leftEUR,
+          this.currencyExchangeRates.USD.EUR
+        );
+        this.leftRUB = this.exchangeCurrency(
+          this.leftEUR,
+          this.currencyExchangeRates.RUB.EUR
+        );
         break;
       default:
         this.leftRUB = 0;
         this.leftUSD = 0;
         this.leftEUR = 0;
+        break;
+    }
+
+    switch (period) {
+      case 'Daily':
+        this.leftRUB = (this.leftRUB * 12) / 365;
+        this.leftUSD = (this.leftUSD * 12) / 365;
+        this.leftEUR = (this.leftEUR * 12) / 365;
+        break;
+      case 'Annualy':
+        this.leftRUB = this.leftRUB * 12;
+        this.leftUSD = this.leftUSD * 12;
+        this.leftEUR = this.leftEUR * 12;
         break;
     }
   }
@@ -176,7 +219,8 @@ export class AppComponent implements OnInit {
       this.calculateLeftMoney(
         +event.target.value,
         this.incomeCurrency,
-        this.incomePeriod
+        this.incomePeriod,
+        this.moneyLeftPeriod
       );
       window.localStorage.setItem(
         'bp__Income',
@@ -194,7 +238,8 @@ export class AppComponent implements OnInit {
       this.calculateLeftMoney(
         this.income,
         event.target.value,
-        this.incomePeriod
+        this.incomePeriod,
+        this.moneyLeftPeriod
       );
       window.localStorage.setItem(
         'bp__Income',
@@ -212,7 +257,8 @@ export class AppComponent implements OnInit {
       this.calculateLeftMoney(
         this.income,
         this.incomeCurrency,
-        event.target.value
+        event.target.value,
+        this.moneyLeftPeriod
       );
       window.localStorage.setItem(
         'bp__Income',
@@ -225,51 +271,53 @@ export class AppComponent implements OnInit {
     }
   }
 
+  onMoneyLeftPeriodChange(event: any) {
+    if (event.target.value !== undefined) {
+      this.calculateLeftMoney(
+        this.income,
+        this.incomeCurrency,
+        this.incomePeriod,
+        event.target.value
+      );
+    }
+  }
+
   ngOnInit() {
-    this.currencyService
-      .getCurrencyRates('USD')
-      .subscribe((data: CurrencyType) => {
-        this.USDRUBRate = data.rates.RUB !== undefined ? data.rates.RUB : 0;
-        this.USDEURRate = data.rates.EUR !== undefined ? data.rates.EUR : 0;
+    this.currencyService.getCurrencyRates().subscribe(
+      (data: {
+        USD: {
+          RUB: number;
+          EUR: number;
+        };
+        RUB: {
+          USD: number;
+          EUR: number;
+        };
+        EUR: {
+          RUB: number;
+          USD: number;
+        };
+      }) => {
+        this.currencyExchangeRates = { ...data };
         this.totalUSD =
           this.rawTotalUSD +
-          this.exchangeRates(this.rawTotalRUB, data.rates.RUB) +
-          this.exchangeRates(this.rawTotalEUR, data.rates.EUR);
-      });
-    this.calculateLeftMoney(
-      this.income,
-      this.incomeCurrency,
-      this.incomePeriod
-    );
-    this.currencyService
-      .getCurrencyRates('EUR')
-      .subscribe((data: CurrencyType) => {
-        this.EURRUBRate = data.rates.RUB !== undefined ? data.rates.RUB : 0;
-        this.EURUSDRate = data.rates.USD !== undefined ? data.rates.USD : 0;
-        this.totalEUR =
-          this.rawTotalEUR +
-          this.exchangeRates(this.rawTotalRUB, data.rates.RUB) +
-          this.exchangeRates(this.rawTotalUSD, data.rates.USD);
-        this.calculateLeftMoney(
-          this.income,
-          this.incomeCurrency,
-          this.incomePeriod
-        );
-      });
-    this.currencyService
-      .getCurrencyRates('RUB')
-      .subscribe((data: CurrencyType) => {
-        this.RUBUSDRate = data.rates.USD !== undefined ? data.rates.USD : 0;
-        this.RUBEURRate = data.rates.EUR !== undefined ? data.rates.EUR : 0;
+          this.exchangeCurrency(this.rawTotalRUB, data.USD.RUB) +
+          this.exchangeCurrency(this.rawTotalEUR, data.USD.EUR);
         this.totalRUB =
           this.rawTotalRUB +
-          this.exchangeRates(this.rawTotalUSD, data.rates.USD) +
-          this.exchangeRates(this.rawTotalEUR, data.rates.EUR);
+          this.exchangeCurrency(this.rawTotalUSD, data.RUB.USD) +
+          this.exchangeCurrency(this.rawTotalEUR, data.RUB.EUR);
+        this.totalEUR =
+          this.rawTotalEUR +
+          this.exchangeCurrency(this.rawTotalRUB, data.EUR.RUB) +
+          this.exchangeCurrency(this.rawTotalUSD, data.EUR.USD);
         this.calculateLeftMoney(
           this.income,
           this.incomeCurrency,
-          this.incomePeriod
+          this.incomePeriod,
+          this.moneyLeftPeriod
         );
-      });
+      }
+    );
   }
 }

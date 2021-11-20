@@ -7,9 +7,11 @@ import { AppComponent } from './app.component';
 import { ConsumptionComponent } from './consumption/consumption.component';
 import { ConsumptionFormComponent } from './consumption-form/consumption-form.component';
 import { FormsModule } from '@angular/forms';
+import { ConsumptionsListComponent } from './consumptions-list/consumptions-list.component';
+import { MoneyCardComponent } from './money-card/money-card.component';
 
 @NgModule({
-  declarations: [AppComponent, ConsumptionComponent, ConsumptionFormComponent],
+  declarations: [AppComponent, ConsumptionComponent, ConsumptionFormComponent, ConsumptionsListComponent, MoneyCardComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],

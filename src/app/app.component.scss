@@ -76,57 +76,6 @@
         }
       }
     }
-
-    @media (max-width: 320px) {
-      .form {
-        &-field {
-          flex-direction: column;
-          gap: 0.5em;
-        }
-      }
-    }
-
-    & .consumptions {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 50px;
-    }
-
-    & .total {
-      display: flex;
-      align-items: center;
-      gap: 50px;
-
-      &-title {
-        text-align: center;
-        font-weight: 700;
-        font-size: 36px;
-      }
-
-      &-values {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-
-        &-item {
-          display: flex;
-          align-items: center;
-          justify-content: flex-end;
-          width: 100%;
-          gap: 1em;
-          > &__value,
-          &__currency {
-            flex: 0 0 50%;
-            width: 50%;
-            display: block;
-            text-align: right;
-          }
-        }
-      }
-    }
   }
 }
 
@@ -137,6 +86,15 @@
         flex-direction: column;
         gap: 20px;
       }
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .form {
+    &-field {
+      flex-direction: column;
+      gap: 0.5em;
     }
   }
 }

@@ -17,8 +17,8 @@ export class ConsumptionFormComponent implements OnInit {
       consumptionsString !== null ? JSON.parse(consumptionsString) : [];
     const id =
       consumptions && consumptions.length > 0
-        ? consumptions[consumptions.length - 1].id + 1
-        : '0';
+        ? +consumptions[consumptions.length - 1].id + 1
+        : 0;
     window.localStorage.setItem(
       'bp__Consumptions',
       JSON.stringify([

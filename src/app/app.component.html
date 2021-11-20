@@ -41,81 +41,9 @@
         <label for="income-period-select" class="income-field__label">Period</label>
       </div>
     </form>
-    <div class="total">
-      <div class="total-title">Left Monthly</div>
-      <div class="total-values">
-        <div class="total-values-item">
-          <span class="total-values-item__value">{{
-            leftRUB | number: "1.2-2"
-          }}</span>
-          <span class="total_values-item__currency">RUB</span>
-        </div>
-        <div class="total-values-item">
-          <span class="total-values-item__value">{{
-            leftUSD | number: "1.2-2"
-          }}</span>
-          <span class="total_values-item__currency">USD</span>
-        </div>
-        <div class="total-values-item">
-          <span class="total-values-item__value">{{
-            leftEUR | number: "1.2-2"
-          }}</span>
-          <span class="total_values-item__currency">EUR</span>
-        </div>
-      </div>
-    </div>
-    <div class="consumptions">
-      <app-consumption
-        *ngFor="let consumption of consumptions"
-        [consumption]="consumption"
-      ></app-consumption>
-    </div>
-    <div class="total">
-      <div class="total-title">Total Monthly</div>
-      <div class="total-values">
-        <div class="total-values-item">
-          <span class="total-values-item__value">{{
-            totalRUB | number: "1.2-2"
-          }}</span>
-          <span class="total_values-item__currency">RUB</span>
-        </div>
-        <div class="total-values-item">
-          <span class="total-values-item__value">{{
-            totalUSD | number: "1.2-2"
-          }}</span>
-          <span class="total_values-item__currency">USD</span>
-        </div>
-        <div class="total-values-item">
-          <span class="total-values-item__value">{{
-            totalEUR | number: "1.2-2"
-          }}</span>
-          <span class="total_values-item__currency">EUR</span>
-        </div>
-      </div>
-    </div>
-    <div class="total">
-      <div class="total-title">Total Yearly</div>
-      <div class="total-values">
-        <div class="total-values-item">
-          <span class="total-values-item__value">{{
-            totalRUB * 12 | number: "1.2-2"
-          }}</span>
-          <span class="total_values-item__currency">RUB</span>
-        </div>
-        <div class="total-values-item">
-          <span class="total-values-item__value">{{
-            totalUSD * 12 | number: "1.2-2"
-          }}</span>
-          <span class="total_values-item__currency">USD</span>
-        </div>
-        <div class="total-values-item">
-          <span class="total-values-item__value">{{
-            totalEUR * 12 | number: "1.2-2"
-          }}</span>
-          <span class="total_values-item__currency">EUR</span>
-        </div>
-      </div>
-    </div>
+    <app-money-card [title]="'Money Left'" [rubValue]="leftRUB" [usdValue]="leftUSD" [eurValue]="leftEUR" [period]="'Monthly'"></app-money-card>
+    <app-consumptions-list [consumptions]="consumptions"></app-consumptions-list>
+    <app-money-card [title]="'Total Consumptions'" [rubValue]="totalRUB" [usdValue]="totalUSD" [eurValue]="totalEUR" [period]="'Monthly'"></app-money-card>
     <app-consumption-form></app-consumption-form>
     <router-outlet></router-outlet>
   </main>

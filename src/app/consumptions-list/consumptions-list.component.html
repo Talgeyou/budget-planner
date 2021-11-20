@@ -1,0 +1,7 @@
+<div class="consumptions">
+    <app-consumption
+      *ngFor="let consumption of consumptions"
+      [consumption]="consumption"
+      (onDelete)="handleConsumptionDelete($event)"
+    ></app-consumption>
+  </div>
