@@ -1,0 +1,21 @@
+<div *ngIf="revenue !== undefined" class="revenue">
+    <div class="revenue-header">
+      <h3 class="revenue-header-name">
+        {{ revenue?.name }}
+      </h3>
+    </div>
+    <div class="revenue-body">
+      <div class="revenue-body-value">
+        <span class="revenue-body-value__label">Value:</span> <span class="revenue-body-value__value">{{ revenue?.value }} {{ revenue?.currency}}</span>
+      </div>
+      <div class="revenue-body-period">
+        <span class="revenue-body-period__label">Period:</span> <span class="revenue-body-period__value">{{ revenue?.period }}</span>
+      </div>
+    </div>
+    <div class="revenue-actions">
+      <button class="revenue-actions-delete" (click)="deleteRevenue()">
+        X
+      </button>
+    </div>
+  </div>
+  

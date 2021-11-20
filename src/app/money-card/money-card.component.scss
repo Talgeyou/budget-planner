@@ -1,17 +1,28 @@
 .money-card {
+  flex: 1;
   display: flex;
   align-items: center;
+  justify-content: center;
+  padding: 0.5em;
   gap: 50px;
+  background: #eeeeee;
+
+  &-title,
+  &-period,
+  &-values {
+    width: 20%;
+    flex: 0 0 20%;
+    text-align: center;
+  }
 
   &-title {
     text-align: center;
     font-weight: 700;
     font-size: 36px;
-    display: flex;
-    align-items: center;
-    gap: 0.25em;
+  }
 
-    & .money-period__select {
+  &-period {
+    &__select {
       font-size: 24px;
       border: none;
       box-shadow: inset #000051 0 0 5px;

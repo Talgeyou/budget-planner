@@ -1,4 +1,4 @@
-.consumption {
+.revenue {
   background-color: #212121;
   color: #ffffff;
   width: 300px;
@@ -37,7 +37,7 @@
 
     &-value {
       &__value {
-        color: #ff5f52;
+        color: #60ad5e;
       }
     }
   }
@@ -68,7 +68,7 @@
 }
 
 @media (max-width: 768px) {
-  .consumption {
+  .revenue {
     &-header {
       &-name {
         font-size: 16px;
@@ -91,7 +91,7 @@
 }
 
 @media (max-width: 375px) {
-  .consumption {
+  .revenue {
     width: 200px;
     &-header {
       &-name {

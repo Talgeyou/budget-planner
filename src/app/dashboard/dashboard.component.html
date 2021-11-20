@@ -1,45 +1,6 @@
 <div class="dashboard">
-    <form class="income">
-        <div class="income-field">
-          <input
-            id="income-value-input"
-            class="income-field__input"
-            type="number"
-            [(ngModel)]="income"
-            (input)="onIncomeChange($event)"
-            name="income"
-          />
-          <label for="income-value-input" class="income-field__label">Income</label>
-        </div>
-        <div class="income-field">
-          <select
-            id="income-currency-select"
-            class="income-field__select"
-            [(ngModel)]="incomeCurrency"
-            (input)="onIncomeCurrencyChange($event)"
-            name="incomeCurrency"
-          >
-            <option vale="RUB">RUB</option>
-            <option vale="USD">USD</option>
-            <option vale="EUR">EUR</option>
-          </select>
-          <label for="income-currency-select" class="income-field__label">Currency</label>
-        </div>
-        <div class="income-field">
-          <select
-            id="income-period-select"
-            class="income-field__select"
-            [(ngModel)]="incomePeriod"
-            (input)="onIncomePeriodChange($event)"
-            name="incomePeriod"
-          >
-            <option vale="RUB">Daily</option>
-            <option vale="USD">Monthly</option>
-            <option vale="EUR">Annualy</option>
-          </select>
-          <label for="income-period-select" class="income-field__label">Period</label>
-        </div>
-      </form>
-      <app-money-card [title]="'Money Left'" [rubValue]="leftRUB" [usdValue]="leftUSD" [eurValue]="leftEUR" [period]="'Monthly'"></app-money-card>
-      <app-money-card [title]="'Total Consumptions'" [rubValue]="totalRUB" [usdValue]="totalUSD" [eurValue]="totalEUR" [period]="'Monthly'"></app-money-card>
+  <app-money-card [title]="'Total Revenues'" [rubValue]="totalRevenues.RUB" [usdValue]="totalRevenues.USD" [eurValue]="totalRevenues.EUR" [period]="'Monthly'"></app-money-card>
+  <app-money-card [title]="'Total Consumptions'" [rubValue]="totalConsumptions.RUB" [usdValue]="totalConsumptions.USD" [eurValue]="totalConsumptions.EUR" [period]="'Monthly'"></app-money-card>
+      <app-money-card [title]="'Money Left'" [rubValue]="totalLeft.RUB" [usdValue]="totalLeft.USD" [eurValue]="totalLeft.EUR" [period]="'Monthly'"></app-money-card>
+      
 </div>

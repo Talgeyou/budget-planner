@@ -1,11 +1,8 @@
-.dashboard {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 20px;
-}
-
-.income {
+.form {
+  &__title {
+    text-align: center;
+    margin-bottom: 16px;
+  }
   &-field,
   &-select,
   &-button {

@@ -1,21 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  ConsumptionType,
-  CurrencyEnum,
-  PeriodsEnum,
-} from '../types/consumption.type';
+import { CurrencyEnum, PeriodsEnum } from '../types/revenue.type';
+import { RevenueType } from '../types/revenue.type';
 
 @Component({
-  selector: 'app-consumption-form',
-  templateUrl: './consumption-form.component.html',
-  styleUrls: ['./consumption-form.component.scss'],
+  selector: 'app-revenue-form',
+  templateUrl: './revenue-form.component.html',
+  styleUrls: ['./revenue-form.component.scss'],
 })
-export class ConsumptionFormComponent implements OnInit {
+export class RevenueFormComponent implements OnInit {
   name: string = '';
   currency: CurrencyEnum = CurrencyEnum.RUB;
   value: number = 0;
   period: PeriodsEnum = PeriodsEnum.MONTHLY;
-  addConsumption() {
+  addRevenue() {
     if (
       this.name !== undefined &&
       this.name.length > 0 &&
@@ -24,18 +21,17 @@ export class ConsumptionFormComponent implements OnInit {
       this.value !== undefined &&
       this.value > 0
     ) {
-      const consumptionsString =
-        window.localStorage.getItem('bp__Consumptions');
-      const consumptions: ConsumptionType[] =
-        consumptionsString !== null ? JSON.parse(consumptionsString) : [];
+      const revenuesString = window.localStorage.getItem('bp__Revenues');
+      const revenues: RevenueType[] =
+        revenuesString !== null ? JSON.parse(revenuesString) : [];
       const id =
-        consumptions && consumptions.length > 0
-          ? +consumptions[consumptions.length - 1].id + 1
+        revenues && revenues.length > 0
+          ? +revenues[revenues.length - 1].id + 1
           : 0;
       window.localStorage.setItem(
-        'bp__Consumptions',
+        'bp__Revenues',
         JSON.stringify([
-          ...consumptions,
+          ...revenues,
           {
             id,
             name: this.name,

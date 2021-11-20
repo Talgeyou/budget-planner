@@ -1,0 +1,57 @@
+<form class="form">
+  <h3 class="form__title">New Revenue</h3>
+  <div class="form-field">
+    <input
+      id="name"
+      class="form-field__input"
+      type="text"
+      required
+      [(ngModel)]="name"
+      name="name"
+    />
+    <label for="name" class="form-field__label">Name</label>
+  </div>
+  <div class="form-field">
+    <select
+      id="currency"
+      class="form-field__select"
+      required
+      [(ngModel)]="currency"
+      name="currency"
+    >
+      <option value="RUB">RUB</option>
+      <option value="USD">USD</option>
+      <option value="EUR">EUR</option>
+    </select>
+    <label for="currency" class="form-field__label">Currency</label>
+  </div>
+  <div class="form-field">
+    <input
+      id="value"
+      class="form-field__input"
+      type="number"
+      min="0"
+      required
+      [(ngModel)]="value"
+      name="value"
+    />
+    <label for="value" class="form-field__label">Value</label>
+  </div>
+  <div class="form-field">
+    <select
+      id="period"
+      class="form-field__select"
+      required
+      [(ngModel)]="period"
+      name="period"
+    >
+      <option value="Daily">Daily</option>
+      <option value="Monthly">Monthly</option>
+      <option value="Annualy">Annualy</option>
+    </select>
+    <label for="period" class="form-field__label">Period</label>
+  </div>
+  <button class="form-submit" role="submit" (click)="addRevenue()">
+    Add Revenue
+  </button>
+</form>

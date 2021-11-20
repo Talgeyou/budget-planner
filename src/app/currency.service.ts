@@ -53,25 +53,25 @@ export class CurrencyService {
         case 'USD':
           rate =
             toCurrency === 'RUB'
-              ? rates.USD.RUB
+              ? rates.RUB.USD
               : toCurrency === 'EUR'
-              ? rates.USD.EUR
+              ? rates.EUR.RUB
               : 1;
           break;
         case 'RUB':
           rate =
             toCurrency === 'USD'
-              ? rates.RUB.USD
+              ? rates.USD.RUB
               : toCurrency === 'EUR'
-              ? rates.RUB.EUR
+              ? rates.EUR.RUB
               : 1;
           break;
         case 'EUR':
           rate =
             toCurrency === 'RUB'
-              ? rates.EUR.RUB
+              ? rates.RUB.EUR
               : toCurrency === 'USD'
-              ? rates.EUR.USD
+              ? rates.USD.EUR
               : 1;
           break;
         default:

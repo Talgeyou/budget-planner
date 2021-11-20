@@ -11,9 +11,12 @@ import { ConsumptionsListComponent } from './consumptions-list/consumptions-list
 import { MoneyCardComponent } from './money-card/money-card.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { RevenuesListComponent } from './revenues-list/revenues-list.component';
+import { RevenueFormComponent } from './revenue-form/revenue-form.component';
+import { RevenueComponent } from './revenue/revenue.component';
 
 @NgModule({
-  declarations: [AppComponent, ConsumptionComponent, ConsumptionFormComponent, ConsumptionsListComponent, MoneyCardComponent, SidebarComponent, DashboardComponent],
+  declarations: [AppComponent, ConsumptionComponent, ConsumptionFormComponent, ConsumptionsListComponent, MoneyCardComponent, SidebarComponent, DashboardComponent, RevenuesListComponent, RevenueFormComponent, RevenueComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
