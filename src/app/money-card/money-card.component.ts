@@ -31,5 +31,20 @@ export class MoneyCardComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    switch (this.period) {
+      case 'Daily':
+        this.usdValue =
+          this.usdValue !== undefined ? (this.usdValue * 365) / 12 : 0;
+        this.rubValue =
+          this.rubValue !== undefined ? (this.rubValue * 365) / 12 : 0;
+        this.eurValue =
+          this.eurValue !== undefined ? (this.eurValue * 365) / 12 : 0;
+        break;
+      case 'Annualy':
+        this.rubValue = this.rubValue !== undefined ? this.rubValue / 12 : 0;
+        this.usdValue = this.usdValue !== undefined ? this.usdValue / 12 : 0;
+        this.eurValue = this.eurValue !== undefined ? this.eurValue / 12 : 0;
+    }
+  }
 }
