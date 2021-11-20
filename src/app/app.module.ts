@@ -9,9 +9,11 @@ import { ConsumptionFormComponent } from './consumption-form/consumption-form.co
 import { FormsModule } from '@angular/forms';
 import { ConsumptionsListComponent } from './consumptions-list/consumptions-list.component';
 import { MoneyCardComponent } from './money-card/money-card.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
-  declarations: [AppComponent, ConsumptionComponent, ConsumptionFormComponent, ConsumptionsListComponent, MoneyCardComponent],
+  declarations: [AppComponent, ConsumptionComponent, ConsumptionFormComponent, ConsumptionsListComponent, MoneyCardComponent, SidebarComponent, DashboardComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],

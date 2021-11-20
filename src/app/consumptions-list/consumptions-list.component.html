@@ -1,7 +1,11 @@
 <div class="consumptions">
+  <app-consumption-form></app-consumption-form>
+  <div class="consumptions-list">
     <app-consumption
       *ngFor="let consumption of consumptions"
       [consumption]="consumption"
       (onDelete)="handleConsumptionDelete($event)"
     ></app-consumption>
   </div>
+</div>
+<app-money-card [title]="moneyCardTitle" [rubValue]="moneyCardValues.RUB" [usdValue]="moneyCardValues.USD" [eurValue]="moneyCardValues.EUR" [period]="moneyCardPeriod"></app-money-card>

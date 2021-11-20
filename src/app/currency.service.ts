@@ -24,7 +24,63 @@ export class CurrencyService {
     },
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.getCurrencyRates();
+  }
+
+  exchangeCurrency(
+    value: number,
+    fromCurrency: 'USD' | 'RUB' | 'EUR',
+    toCurrency: 'USD' | 'RUB' | 'EUR',
+    rates: {
+      USD: {
+        RUB: number;
+        EUR: number;
+      };
+      RUB: {
+        USD: number;
+        EUR: number;
+      };
+      EUR: {
+        RUB: number;
+        USD: number;
+      };
+    }
+  ) {
+    if (value !== undefined && fromCurrency !== undefined && toCurrency) {
+      let rate = 0;
+      switch (fromCurrency) {
+        case 'USD':
+          rate =
+            toCurrency === 'RUB'
+              ? rates.USD.RUB
+              : toCurrency === 'EUR'
+              ? rates.USD.EUR
+              : 1;
+          break;
+        case 'RUB':
+          rate =
+            toCurrency === 'USD'
+              ? rates.RUB.USD
+              : toCurrency === 'EUR'
+              ? rates.RUB.EUR
+              : 1;
+          break;
+        case 'EUR':
+          rate =
+            toCurrency === 'RUB'
+              ? rates.EUR.RUB
+              : toCurrency === 'USD'
+              ? rates.EUR.USD
+              : 1;
+          break;
+        default:
+          rate = 1;
+      }
+      return value / rate;
+    }
+    return 0;
+  }
 
   getCurrencyRates() {
     return this.http.get(this.apiUrl + 'latest?base=USD').pipe(
