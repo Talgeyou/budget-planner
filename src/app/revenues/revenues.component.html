@@ -1,0 +1,13 @@
+<div class="revenues">
+    <app-money-total
+      [title]="totalTitle"
+      [rubValue]="totalValues.RUB"
+      [usdValue]="totalValues.USD"
+      [eurValue]="totalValues.EUR"
+      [period]="totalPeriod"
+    ></app-money-total>
+    <div class="revenues-content">
+      <app-money-card-form [type]="'revenues'" (onMoneyCardAdd)="handleRevenueAdd($event)"></app-money-card-form>
+      <app-money-cards-list [moneyCards]="revenues" [type]="'revenues'"></app-money-cards-list>
+    </div>
+</div>

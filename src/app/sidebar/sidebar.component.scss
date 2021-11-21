@@ -3,19 +3,23 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 10vw;
   &-navigation {
     &-links {
       &-link {
         &__item {
           padding: 0.5em;
-          transition: 0.3s ease-in-out;
+          transition: border-right 0.1s ease-in-out, transform 0.3s ease-in-out;
           &:hover {
-            transition: 0.3s ease-in-out;
             transform: translateX(20px);
           }
         }
         &.active > &__item {
           border-right: solid #1a237e 3px;
+        }
+
+        &:not(.active) > &__item:hover {
+          border-right: solid #534bae 3px;
         }
       }
     }

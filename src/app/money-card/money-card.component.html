@@ -1,37 +1,21 @@
-<div class="money-card">
-  <div class="money-card-title">
-    {{ title
-    }}
-  </div>
-  <div class="money-card-period"><select
-    id="money-{{ title }}-period-select"
-    class="money-card-period__select"
-    [(ngModel)]="period"
-    (input)="onPeriodChange($event)"
-    name="money{{ title }}Period"
-  >
-    <option vale="Daily">Daily</option>
-    <option vale="Monthly">Monthly</option>
-    <option vale="Annualy">Annualy</option>
-  </select></div>
-  <div class="money-card-values">
-    <div *ngIf="rubValue !== undefined" class="money-card-values-item">
-      <span class="money-card-values-item__value">{{
-        getValue(rubValue) | number: "1.2-2"
-      }}</span>
-      <span class="money-card-values-item__currency">RUB</span>
+<div *ngIf="moneyCard !== undefined" class="money-card">
+    <div class="money-card-header">
+      <h3 class="money-card-header-name">
+        {{ moneyCard?.name }}
+      </h3>
     </div>
-    <div *ngIf="usdValue !== undefined" class="money-card-values-item">
-      <span class="money-card-values-item__value">{{
-        getValue(usdValue) | number: "1.2-2"
-      }}</span>
-      <span class="money-card-values-item__currency">USD</span>
+    <div class="money-card-body">
+      <div class="money-card-body-value">
+        <span class="money-card-body-value__label">Value:</span> <span class="money-card-body-value__value" [ngClass]="{'revenue': type === 'revenues', 'consumption': type === 'consumptions'}">{{ moneyCard?.value }} {{ moneyCard?.currency}}</span>
+      </div>
+      <div class="money-card-body-period">
+        <span class="money-card-body-period__label">Period:</span> <span class="money-card-body-period__value">{{ moneyCard?.period }}</span>
+      </div>
     </div>
-    <div *ngIf="eurValue !== undefined" class="money-card-values-item">
-      <span class="money-card-values-item__value">{{
-        getValue(eurValue) | number: "1.2-2"
-      }}</span>
-      <span class="money-card-values-item__currency">EUR</span>
+    <div class="money-card-actions">
+      <button class="money-card-actions-delete" (click)="deleteMoneyCard()">
+        X
+      </button>
     </div>
   </div>
-</div>
+  

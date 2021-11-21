@@ -1,0 +1,38 @@
+<div class="money-card">
+  <div class="money-card-title">
+    {{ title }}
+  </div>
+  <div class="money-card-period">
+    <select
+      id="money-{{ title }}-period-select"
+      class="money-card-period__select"
+      [(ngModel)]="period"
+      (input)="onPeriodChange($event)"
+      name="money{{ title }}Period"
+    >
+      <option vale="Daily">Daily</option>
+      <option vale="Monthly">Monthly</option>
+      <option vale="Annualy">Annualy</option></select
+    ><label class="money-card-period__label"><span>Period</span></label>
+  </div>
+  <div class="money-card-values">
+    <div *ngIf="rubValue !== undefined" class="money-card-values-item">
+      <span class="money-card-values-item__value">{{
+        getValue(rubValue) | number: "1.2-2"
+      }}</span>
+      <span class="money-card-values-item__currency">RUB</span>
+    </div>
+    <div *ngIf="usdValue !== undefined" class="money-card-values-item">
+      <span class="money-card-values-item__value">{{
+        getValue(usdValue) | number: "1.2-2"
+      }}</span>
+      <span class="money-card-values-item__currency">USD</span>
+    </div>
+    <div *ngIf="eurValue !== undefined" class="money-card-values-item">
+      <span class="money-card-values-item__value">{{
+        getValue(eurValue) | number: "1.2-2"
+      }}</span>
+      <span class="money-card-values-item__currency">EUR</span>
+    </div>
+  </div>
+</div>

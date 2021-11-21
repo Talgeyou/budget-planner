@@ -1,0 +1,10 @@
+.consumptions {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  &-content {
+    display: grid;
+    grid-template-columns: 20% 70%;
+    gap: 40px;
+  }
+}

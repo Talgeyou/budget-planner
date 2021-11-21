@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ConsumptionType } from '../types/consumption.type';
+import { RevenueType } from '../types/revenue.type';
 
 @Component({
   selector: 'app-money-card',
@@ -6,45 +8,40 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./money-card.component.scss'],
 })
 export class MoneyCardComponent implements OnInit {
-  @Input() title: string | undefined;
-  @Input() rubValue: number | undefined;
-  @Input() usdValue: number | undefined;
-  @Input() eurValue: number | undefined;
-  @Input() period: 'Daily' | 'Monthly' | 'Annualy' = 'Monthly';
+  @Input() moneyCard: RevenueType | ConsumptionType | undefined;
+  @Input() type: 'consumptions' | 'revenues' | undefined;
+  @Output() onDelete = new EventEmitter<number>();
 
   constructor() {}
 
-  onPeriodChange(event: any) {
-    if (event?.target?.value !== undefined) {
-      this.period = event.target.value;
+  deleteMoneyCard() {
+    if (this.moneyCard !== undefined && this.type !== undefined) {
+      const revenuesString = window.localStorage.getItem(
+        this.type === 'revenues'
+          ? 'bp__Revenues'
+          : this.type === 'consumptions'
+          ? 'bp__Consumptions'
+          : ''
+      );
+      const revenues =
+        revenuesString !== null ? JSON.parse(revenuesString) : [];
+      window.localStorage.setItem(
+        this.type === 'revenues'
+          ? 'bp__Revenues'
+          : this.type === 'consumptions'
+          ? 'bp__Consumptions'
+          : '',
+        JSON.stringify(
+          revenues.filter((moneyCard: RevenueType | ConsumptionType) => {
+            return (
+              this.moneyCard === undefined || moneyCard.id !== this.moneyCard.id
+            );
+          })
+        )
+      );
+      this.onDelete.emit(this.moneyCard.id);
     }
   }
 
-  getValue(monthValue: number) {
-    switch (this.period) {
-      case 'Daily':
-        return (monthValue * 12) / 365;
-      case 'Monthly':
-        return monthValue;
-      case 'Annualy':
-        return monthValue * 12;
-    }
-  }
-
-  ngOnInit(): void {
-    switch (this.period) {
-      case 'Daily':
-        this.usdValue =
-          this.usdValue !== undefined ? (this.usdValue * 365) / 12 : 0;
-        this.rubValue =
-          this.rubValue !== undefined ? (this.rubValue * 365) / 12 : 0;
-        this.eurValue =
-          this.eurValue !== undefined ? (this.eurValue * 365) / 12 : 0;
-        break;
-      case 'Annualy':
-        this.rubValue = this.rubValue !== undefined ? this.rubValue / 12 : 0;
-        this.usdValue = this.usdValue !== undefined ? this.usdValue / 12 : 0;
-        this.eurValue = this.eurValue !== undefined ? this.eurValue / 12 : 0;
-    }
-  }
+  ngOnInit(): void {}
 }

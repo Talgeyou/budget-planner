@@ -9,7 +9,10 @@
 }
 
 html,
-body {
+body,
+button,
+input,
+select {
   font-family: "Shippori+Antique", sans-serif;
   font-weight: 400;
   font-size: 24px;
@@ -26,5 +29,94 @@ a {
   &:hover {
     transition: color 0.1s ease-in-out;
     color: #1a237e;
+  }
+}
+
+input,
+select,
+button {
+  background: none;
+  outline: 0;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+button {
+  border-radius: 10px;
+  width: 100%;
+  padding: 0.25em;
+}
+
+input,
+select {
+  border-radius: 2px;
+  margin: 0;
+  border: none;
+  width: 100%;
+  background: rgba(0, 0, 0, 0);
+  transition: padding-top 0.2s ease, margin-top 0.2s ease;
+  overflow-x: hidden;
+
+  & + label {
+    display: block;
+    position: relative;
+    white-space: nowrap;
+    padding: 0;
+    margin: 0;
+    width: 10%;
+    border-top: 1px solid #1a237e;
+    -webkit-transition: width 0.4s ease;
+    transition: width 0.4s ease;
+    height: 0px;
+
+    > span {
+      margin: 0;
+      position: absolute;
+      color: #8f8f8f;
+      top: -30px;
+      left: 0px;
+      z-index: -1;
+      -webkit-transition: top 0.2s ease, font-size 0.2s ease, color 0.2s ease;
+      transition: top 0.2s ease, font-size 0.2s ease, color 0.2s ease;
+    }
+  }
+
+  &:focus {
+    & + label {
+      width: 100%;
+    }
+  }
+
+  &:valid {
+    & + label {
+      border-color: #1b5e20;
+    }
+  }
+
+  &:invalid {
+    & + label {
+      border-color: #b71c1c;
+    }
+  }
+
+  &:focus,
+  &:valid {
+    padding-top: 35px;
+
+    & + label > span {
+      top: -50px;
+      font-size: 14px;
+      color: #333;
+    }
+  }
+
+  &:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    border-bottom: solid #1a237e 1px;
+    width: 100%;
   }
 }
