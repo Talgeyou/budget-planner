@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CurrencyService } from './currency.service';
-import {
-  ConsumptionType,
-  CurrencyEnum,
-  PeriodsEnum,
-} from './types/consumption.type';
+import { ConsumptionType } from './types/consumption.type';
+import { CurrencyEnum, PeriodsEnum } from './types/money.enum';
 
 @Injectable({
   providedIn: 'root',

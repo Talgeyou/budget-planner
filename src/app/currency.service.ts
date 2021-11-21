@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { concatMap, map, switchMap, tap } from 'rxjs';
-import { CurrencyType } from './types/currency.type';
+import { concatMap, map, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

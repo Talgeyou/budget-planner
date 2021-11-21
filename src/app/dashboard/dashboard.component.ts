@@ -2,11 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ConsumptionsService } from '../consumptions.service';
 import { RevenuesService } from '../revenues.service';
 import { CurrencyService } from '../currency.service';
-import {
-  ConsumptionType,
-  CurrencyEnum,
-  PeriodsEnum,
-} from '../types/consumption.type';
+import { ConsumptionType } from '../types/consumption.type';
 import { CurrencyType } from '../types/currency.type';
 import { RevenueType } from '../types/revenue.type';
 

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ConsumptionType } from '../types/consumption.type';
-import { CurrencyEnum, PeriodsEnum, RevenueType } from '../types/revenue.type';
+import { CurrencyEnum, PeriodsEnum } from '../types/money.enum';
+import { RevenueType } from '../types/revenue.type';
 
 @Component({
   selector: 'app-money-card-form',
@@ -24,7 +25,15 @@ export class MoneyCardFormComponent implements OnInit {
   constructor() {}
 
   addMoneyCard() {
-    if (this.type !== undefined) {
+    if (
+      this.type !== undefined &&
+      this.moneyCard.name !== undefined &&
+      this.moneyCard.name.length > 0 &&
+      this.moneyCard.value !== undefined &&
+      this.moneyCard.value > 0 &&
+      Object.values(CurrencyEnum).includes(this.moneyCard.currency) &&
+      Object.values(PeriodsEnum).includes(this.moneyCard.period)
+    ) {
       const localVariableName =
         this.type === 'revenues'
           ? 'bp__Revenues'
