@@ -1,4 +1,6 @@
-<aside class="sidebar">
+
+<aside class="sidebar" [ngClass]="{'active': isActive}">
+  <button class="sidebar-burger" (click)="toggleSidebar()">Burger</button>
   <nav class="sidebar-navigation">
     <ul class="sidebar-navigation-links">
         <a class="sidebar-navigation-links-link" routerLink="/dashboard" routerLinkActive="active"><li class="sidebar-navigation-links-link__item">Dashboard</li></a>

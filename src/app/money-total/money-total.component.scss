@@ -1,4 +1,4 @@
-.money-card {
+.money-total {
   flex: 1;
   display: flex;
   align-items: center;
@@ -53,9 +53,17 @@
   }
 }
 
-@media (max-width: 768px) {
-  .money-card {
+@media (max-width: 1024px) {
+  .money-total {
     flex-direction: column;
     gap: 20px;
+
+    &-title,
+    &-period,
+    &-values {
+      width: auto;
+      flex: 1;
+      text-align: center;
+    }
   }
 }

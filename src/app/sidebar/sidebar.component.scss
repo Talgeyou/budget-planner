@@ -2,8 +2,10 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  width: 10vw;
+  width: 200px;
+  &-burger {
+    display: none;
+  }
   &-navigation {
     &-links {
       &-link {
@@ -22,6 +24,28 @@
           border-right: solid #534bae 3px;
         }
       }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    background-color: #ffffff;
+    position: fixed;
+    width: 0px;
+    transition: width 0.3s ease-in-out;
+    &.active {
+      width: 100vw;
+    }
+    &-navigation {
+      transform: translateX(-200px);
+      transition: transform 0.3s ease-in-out;
+    }
+    &-burger {
+      display: block;
+    }
+    &.active &-navigation {
+      transform: translateX(0);
     }
   }
 }

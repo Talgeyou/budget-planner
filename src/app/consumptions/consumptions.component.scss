@@ -8,3 +8,11 @@
     gap: 40px;
   }
 }
+
+@media (max-width: 1024px) {
+  .consumptions {
+    &-content {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+}
