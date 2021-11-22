@@ -11,20 +11,52 @@ export class MoneyCardComponent implements OnInit {
   @Input() moneyCard: RevenueType | ConsumptionType | undefined;
   @Input() type: 'consumptions' | 'revenues' | undefined;
   @Output() onDelete = new EventEmitter<number>();
+  @Output() onEdit = new EventEmitter<RevenueType[] | ConsumptionType[]>();
+  editMode: boolean = false;
 
   constructor() {}
 
+  toggleEditMode() {
+    this.editMode = !this.editMode;
+    if (this.editMode === false) {
+      if (this.moneyCard !== undefined && this.type !== undefined) {
+        const moneyCardsString = window.localStorage.getItem(
+          this.type === 'revenues'
+            ? 'bp__Revenues'
+            : this.type === 'consumptions'
+            ? 'bp__Consumptions'
+            : ''
+        );
+        const moneyCards =
+          moneyCardsString !== null ? JSON.parse(moneyCardsString) : [];
+        const newMoneyCards = moneyCards.map(
+          (moneyCard: RevenueType | ConsumptionType) =>
+            moneyCard.id === this.moneyCard?.id ? this.moneyCard : moneyCard
+        );
+        window.localStorage.setItem(
+          this.type === 'revenues'
+            ? 'bp__Revenues'
+            : this.type === 'consumptions'
+            ? 'bp__Consumptions'
+            : '',
+          JSON.stringify(newMoneyCards)
+        );
+        this.onEdit.emit(newMoneyCards);
+      }
+    }
+  }
+
   deleteMoneyCard() {
     if (this.moneyCard !== undefined && this.type !== undefined) {
-      const revenuesString = window.localStorage.getItem(
+      const moneyCardsString = window.localStorage.getItem(
         this.type === 'revenues'
           ? 'bp__Revenues'
           : this.type === 'consumptions'
           ? 'bp__Consumptions'
           : ''
       );
-      const revenues =
-        revenuesString !== null ? JSON.parse(revenuesString) : [];
+      const moneyCards =
+        moneyCardsString !== null ? JSON.parse(moneyCardsString) : [];
       window.localStorage.setItem(
         this.type === 'revenues'
           ? 'bp__Revenues'
@@ -32,7 +64,7 @@ export class MoneyCardComponent implements OnInit {
           ? 'bp__Consumptions'
           : '',
         JSON.stringify(
-          revenues.filter((moneyCard: RevenueType | ConsumptionType) => {
+          moneyCards.filter((moneyCard: RevenueType | ConsumptionType) => {
             return (
               this.moneyCard === undefined || moneyCard.id !== this.moneyCard.id
             );

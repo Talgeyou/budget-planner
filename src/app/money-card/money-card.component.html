@@ -1,21 +1,46 @@
 <div *ngIf="moneyCard !== undefined" class="money-card">
-    <div class="money-card-header">
-      <h3 class="money-card-header-name">
-        {{ moneyCard?.name }}
-      </h3>
+  <div class="money-card-header">
+    <h3 class="money-card-header-name">
+      {{ moneyCard?.name }}
+    </h3>
+  </div>
+  <div class="money-card-body">
+    <div class="money-card-body-value">
+      <span class="money-card-body-value__label">Value:</span>
+      <span
+        *ngIf="editMode === false"
+        class="money-card-body-value__value"
+        [ngClass]="{
+          revenue: type === 'revenues',
+          consumption: type === 'consumptions'
+        }"
+        >{{ moneyCard?.value }} {{ moneyCard?.currency }}</span
+      >
+      <input *ngIf="editMode === true" class="money-card-body-value__input" type="number" min="0.01" [(ngModel)]="moneyCard.value" />
+      <select *ngIf="editMode === true" class="money-card-body-value__select" [(ngModel)]="moneyCard.currency">
+        <option value="RUB">RUB</option>
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+      </select>
     </div>
-    <div class="money-card-body">
-      <div class="money-card-body-value">
-        <span class="money-card-body-value__label">Value:</span> <span class="money-card-body-value__value" [ngClass]="{'revenue': type === 'revenues', 'consumption': type === 'consumptions'}">{{ moneyCard?.value }} {{ moneyCard?.currency}}</span>
-      </div>
-      <div class="money-card-body-period">
-        <span class="money-card-body-period__label">Period:</span> <span class="money-card-body-period__value">{{ moneyCard?.period }}</span>
-      </div>
-    </div>
-    <div class="money-card-actions">
-      <button class="money-card-actions-delete" (click)="deleteMoneyCard()">
-        X
-      </button>
+    <div class="money-card-body-period">
+      <span class="money-card-body-period__label">Period:</span>
+      <span *ngIf="editMode === false" class="money-card-body-period__value">{{
+        moneyCard?.period
+      }}</span>
+      <select *ngIf="editMode === true" class="money-card-body-period__select" [(ngModel)]="moneyCard.period">
+        <option value="Daily">Daily</option>
+        <option value="Monthly">Monthly</option>
+        <option value="Annualy">Annualy</option>
+      </select>
     </div>
   </div>
-  
+  <div class="money-card-actions">
+    <button class="money-card-actions-delete" (click)="deleteMoneyCard()">
+      X
+    </button>
+    <button class="money-card-actions-edit" (click)="toggleEditMode()">
+      ✎
+    </button>
+  </div>
+</div>

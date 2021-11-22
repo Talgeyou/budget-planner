@@ -14,6 +14,16 @@
     &-period {
       display: flex;
       justify-content: space-between;
+      &__input,
+      &__select {
+        width: 33%;
+        color: #000000;
+        background-color: #ffffff;
+        padding: 0;
+        &:focus {
+          padding: 0;
+        }
+      }
     }
 
     &-value + &-period {
@@ -34,8 +44,23 @@
 
   &-actions {
     padding: 0.5em;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5em;
     &-delete {
+      color: #ffffff;
       background-color: #b71c1c;
+      &:hover {
+        color: #000000;
+        background-color: #f05545;
+      }
+    }
+    &-edit {
+      background-color: #f9a825;
+      color: #000000;
+      &:hover {
+        background-color: #ffd95a;
+      }
     }
   }
 }

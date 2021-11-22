@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
   isActive: boolean = false;
+  routes: Array<{ path?: string }>;
 
-  constructor() {}
+  constructor(private router: Router) {
+    this.routes = router.config;
+  }
 
   toggleSidebar() {
     this.isActive = !this.isActive;

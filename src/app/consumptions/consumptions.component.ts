@@ -56,8 +56,8 @@ export class ConsumptionsComponent implements OnInit {
     private consumptionsService: ConsumptionsService,
     private currencyService: CurrencyService
   ) {
-    const revenues = window.localStorage.getItem('bp__Consumptions');
-    this.consumptions = revenues !== null ? JSON.parse(revenues) : [];
+    const consumptions = window.localStorage.getItem('bp__Consumptions');
+    this.consumptions = consumptions !== null ? JSON.parse(consumptions) : [];
   }
 
   handleConsumptionDelete(consumptionId: number) {
@@ -68,6 +68,11 @@ export class ConsumptionsComponent implements OnInit {
   }
 
   handleConsumptionAdd(newConsumptions: ConsumptionType[]) {
+    this.consumptions = [...newConsumptions];
+    this.calculateTotal();
+  }
+
+  handleConsumptionsChange(newConsumptions: ConsumptionType[]) {
     this.consumptions = [...newConsumptions];
     this.calculateTotal();
   }

@@ -1,11 +1,19 @@
-
-<aside class="sidebar" [ngClass]="{'active': isActive}">
+<aside class="sidebar" [ngClass]="{ active: isActive }">
   <button class="sidebar-burger" (click)="toggleSidebar()">Burger</button>
   <nav class="sidebar-navigation">
     <ul class="sidebar-navigation-links">
-        <a class="sidebar-navigation-links-link" routerLink="/dashboard" routerLinkActive="active"><li class="sidebar-navigation-links-link__item">Dashboard</li></a>
-        <a class="sidebar-navigation-links-link" routerLink="/consumptions" routerLinkActive="active"><li class="sidebar-navigation-links-link__item">Consumptions</li></a>
-        <a class="sidebar-navigation-links-link" routerLink="/revenues" routerLinkActive="active"><li class="sidebar-navigation-links-link__item">Revenues</li></a>
+      <a
+        *ngFor="let route of routes"
+        class="sidebar-navigation-links-link"
+        routerLink="/{{ route.path }}"
+        routerLinkActive="active"
+        ><li
+          *ngIf="route.path !== undefined && route.path.length > 0"
+          class="sidebar-navigation-links-link__item"
+        >
+          {{ route.path | titlecase }}
+        </li></a
+      >
     </ul>
   </nav>
 </aside>

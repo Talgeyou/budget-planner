@@ -8,6 +8,6 @@
     ></app-money-total>
     <div class="consumptions-content">
         <app-money-card-form [type]="'consumptions'" (onMoneyCardAdd)="handleConsumptionAdd($event)"></app-money-card-form>
-    <app-money-cards-list [moneyCards]="consumptions" [type]="'consumptions'"></app-money-cards-list>
+    <app-money-cards-list [moneyCards]="consumptions" [type]="'consumptions'" (onMoneyCardsChange)="handleConsumptionsChange($event)"></app-money-cards-list>
     </div>
 </div>

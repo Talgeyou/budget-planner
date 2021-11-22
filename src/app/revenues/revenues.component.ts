@@ -70,6 +70,11 @@ export class RevenuesComponent implements OnInit {
     this.revenues = [...newRevenues];
   }
 
+  handleRevenuesChange(newRevenues: RevenueType[]) {
+    this.revenues = [...newRevenues];
+    this.calculateTotal();
+  }
+
   calculateTotal() {
     if (this.currencyServiceSubscription !== undefined) {
       this.currencyServiceSubscription.unsubscribe();
