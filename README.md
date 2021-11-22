@@ -7,18 +7,18 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <h3 align="center">AniShiro</h3>
+  <h3 align="center">Budget Planner</h3>
   <p align="center">
-    Anime wiki frontend using MyAnimeList data!
+    Web app for planning your budget!
     <br />
-    <a href="https://github.com/Talgeyou/anishiro"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/Talgeyou/budget-planner"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/Talgeyou/anishiro">View Demo</a>
+    <a href="https://github.com/Talgeyou/budget-planner">View Demo</a>
     ·
-    <a href="https://github.com/Talgeyou/anishiro/issues">Report Bug</a>
+    <a href="https://github.com/Talgeyou/budget-planner/issues">Report Bug</a>
     ·
-    <a href="https://github.com/Talgeyou/anishiro/issues">Request Feature</a>
+    <a href="https://github.com/Talgeyou/budget-planner/issues">Request Feature</a>
   </p>
 </p>
 
@@ -50,7 +50,7 @@
 
 ## About The Project
 
-I am learning next.js now so I decided to create this pet project to become better at this framework. This web app fetching data from unofficial MyAnimeList api Jikan.
+I am learning next.js now so I decided to create this pet project to become better at this framework. This web app helps you plan your revenues and consumption.
 
 ### Built With
 
