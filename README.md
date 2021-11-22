@@ -1,27 +1,131 @@
-# BudgetPlanner
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.1.
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <h3 align="center">AniShiro</h3>
+  <p align="center">
+    Anime wiki frontend using MyAnimeList data!
+    <br />
+    <a href="https://github.com/Talgeyou/anishiro"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/Talgeyou/anishiro">View Demo</a>
+    ·
+    <a href="https://github.com/Talgeyou/anishiro/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/Talgeyou/anishiro/issues">Request Feature</a>
+  </p>
+</p>
 
-## Development server
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+<!-- ABOUT THE PROJECT -->
 
-## Code scaffolding
+## About The Project
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+I am learning next.js now so I decided to create this pet project to become better at this framework. This web app fetching data from unofficial MyAnimeList api Jikan.
 
-## Build
+### Built With
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- [Angular](https://angular.io/) - Frontend framework
 
-## Running unit tests
+- [Frankfurter](https://www.frankfurter.app/) - Api for currencies
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+<!-- GETTING STARTED -->
 
-## Running end-to-end tests
+## Getting Started
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+You can deploy your own web app based on my code.
 
-## Further help
+### Prerequisites
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+The only thing you need is node.js installed on your computer
+
+[Node.js](https://nodejs.org/en/)
+
+### Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/Talgeyou/budget-planner
+   cd budget-planner
+   ```
+2. Install NPM packages
+   Using npm:
+   ```sh
+   npm install
+   ```
+   Or yarn:
+   ```sh
+   yarn install
+   ```
+
+<!-- ROADMAP -->
+
+## Roadmap
+
+See the [open issues](https://github.com/Talgeyou/budget-planner/issues) for a list of proposed features (and known issues).
+
+<!-- CONTRIBUTING -->
+
+## Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+<!-- LICENSE -->
+
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+<!-- CONTACT -->
+
+## Contact
+
+Ilya Derevyashkin - Telegram [@otalge](https://t.me/otalge)
+
+Project Link: [https://github.com/Talgeyou/budget-planner/](https://github.com/Talgeyou/budget-planner/)
+
+[contributors-shield]: https://img.shields.io/github/contributors/Talgeyou/budget-planner.svg?style=for-the-badge
+[contributors-url]: https://github.com/Talgeyou/budget-planner/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Talgeyou/budget-planner.svg?style=for-the-badge
+[forks-url]: https://github.com/Talgeyou/budget-planner/network/members
+[stars-shield]: https://img.shields.io/github/stars/Talgeyou/budget-planner.svg?style=for-the-badge
+[stars-url]: https://github.com/Talgeyou/budget-planner/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Talgeyou/budget-planner.svg?style=for-the-badge
+[issues-url]: https://github.com/Talgeyou/budget-planner/issues
+[license-shield]: https://img.shields.io/github/license/Talgeyou/budget-planner.svg?style=for-the-badge
+[license-url]: https://github.com/Talgeyou/budget-planner/blob/master/LICENSE.txt
