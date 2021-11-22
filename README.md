@@ -50,7 +50,7 @@
 
 ## About The Project
 
-I am learning next.js now so I decided to create this pet project to become better at this framework. This web app helps you plan your revenues and consumption.
+I am learning angular now so I decided to create this pet project to become better at this framework. This web app helps you plan your revenues and consumption.
 
 ### Built With
 
