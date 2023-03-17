@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConsumptionsService } from '../consumptions.service';
 import { RevenuesService } from '../revenues.service';
-import { CurrencyService } from '../currency.service';
+import { CurrencyService, ExchangeRates } from '../currency.service';
 import { ConsumptionType } from '../types/consumption.type';
 import { CurrencyType } from '../types/currency.type';
 import { RevenueType } from '../types/revenue.type';
@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
     EUR: 0,
   };
 
-  currencyExchangeRates = {
+  currencyExchangeRates: ExchangeRates = {
     USD: {
       RUB: 0,
       EUR: 0,
@@ -67,41 +67,26 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.currencyService.getCurrencyRates().subscribe(
-      (data: {
-        USD: {
-          RUB: number;
-          EUR: number;
-        };
-        RUB: {
-          USD: number;
-          EUR: number;
-        };
-        EUR: {
-          RUB: number;
-          USD: number;
-        };
-      }) => {
-        this.currencyExchangeRates = { ...data };
-        console.log(data);
-        console.log(this.currencyExchangeRates);
+    this.currencyService.getCurrencyRates().subscribe((data) => {
+      this.currencyExchangeRates = { ...data };
+      console.log(data);
+      console.log(this.currencyExchangeRates);
 
-        this.totalConsumptions = {
-          ...this.consumptionsService.calculateAllConsumptions(
-            this.consumptions,
-            this.currencyExchangeRates
-          ),
-        };
-        console.log(this.totalConsumptions);
-        this.totalRevenues = {
-          ...this.revenuesService.calculateAllRevenues(
-            this.revenues,
-            this.currencyExchangeRates
-          ),
-        };
-        console.log(this.totalRevenues);
-        this.calculateLeftMoney();
-      }
-    );
+      this.totalConsumptions = {
+        ...this.consumptionsService.calculateAllConsumptions(
+          this.consumptions,
+          this.currencyExchangeRates
+        ),
+      };
+      console.log(this.totalConsumptions);
+      this.totalRevenues = {
+        ...this.revenuesService.calculateAllRevenues(
+          this.revenues,
+          this.currencyExchangeRates
+        ),
+      };
+      console.log(this.totalRevenues);
+      this.calculateLeftMoney();
+    });
   }
 }

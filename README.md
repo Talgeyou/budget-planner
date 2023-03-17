@@ -56,7 +56,7 @@ I am learning angular now so I decided to create this pet project to become bett
 
 - [Angular](https://angular.io/) - Frontend framework
 
-- [Frankfurter](https://www.frankfurter.app/) - Api for currencies
+- [exchangerate.host](https://exchangerate.host/) - Api for currencies
 
 <!-- GETTING STARTED -->
 
@@ -79,12 +79,21 @@ The only thing you need is node.js installed on your computer
    ```
 2. Install NPM packages
    Using npm:
+
    ```sh
    npm install
    ```
+
    Or yarn:
+
    ```sh
    yarn install
+   ```
+
+   Or pnpm:
+
+   ```sh
+   pnpm install
    ```
 
 <!-- ROADMAP -->

@@ -1,12 +1,33 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { concatMap, map, tap } from 'rxjs';
+import { concatMap, map, Observable, tap } from 'rxjs';
+
+type ApiData = {
+  info: {
+    rate: number;
+  };
+};
+
+export type ExchangeRates = {
+  USD: {
+    RUB: number;
+    EUR: number;
+  };
+  RUB: {
+    USD: number;
+    EUR: number;
+  };
+  EUR: {
+    RUB: number;
+    USD: number;
+  };
+};
 
 @Injectable({
   providedIn: 'root',
 })
 export class CurrencyService {
-  apiUrl: string = 'https://api.frankfurter.app/';
+  apiUrl: string = 'https://api.exchangerate.host/convert';
 
   exchangeRates = {
     USD: {
@@ -31,20 +52,7 @@ export class CurrencyService {
     value: number,
     fromCurrency: 'USD' | 'RUB' | 'EUR',
     toCurrency: 'USD' | 'RUB' | 'EUR',
-    rates: {
-      USD: {
-        RUB: number;
-        EUR: number;
-      };
-      RUB: {
-        USD: number;
-        EUR: number;
-      };
-      EUR: {
-        RUB: number;
-        USD: number;
-      };
-    }
+    rates: ExchangeRates
   ) {
     if (value !== undefined && fromCurrency !== undefined && toCurrency) {
       let rate = 0;
@@ -81,39 +89,80 @@ export class CurrencyService {
     return 0;
   }
 
-  getCurrencyRates() {
-    return this.http.get(this.apiUrl + 'latest?base=USD').pipe(
-      tap(
-        (dataUSD: any) =>
-          (this.exchangeRates = {
+  getCurrencyRates(): Observable<ExchangeRates> {
+    return this.http
+      .get<ApiData>(this.apiUrl + '?from=USD&to=EUR')
+      .pipe(
+        tap((dataUSDtoEUR) => {
+          this.exchangeRates = {
             ...this.exchangeRates,
             USD: {
-              RUB: dataUSD.rates.RUB ? dataUSD.rates.RUB : 0,
-              EUR: dataUSD.rates.EUR ? dataUSD.rates.EUR : 0,
+              ...this.exchangeRates.USD,
+              EUR: dataUSDtoEUR.info.rate ?? 0,
             },
-          })
-      ),
-      concatMap(() => this.http.get(this.apiUrl + 'latest?base=RUB')),
-      tap((dataRUB: any) => {
-        this.exchangeRates = {
-          ...this.exchangeRates,
-          RUB: {
-            USD: dataRUB.rates.USD ? dataRUB.rates.USD : 0,
-            EUR: dataRUB.rates.EUR ? dataRUB.rates.EUR : 0,
-          },
-        };
-      }),
-      concatMap(() => this.http.get(this.apiUrl + 'latest?base=EUR')),
-      tap((dataEUR: any) => {
-        return (this.exchangeRates = {
-          ...this.exchangeRates,
-          EUR: {
-            USD: dataEUR.rates.USD ? dataEUR.rates.USD : 0,
-            RUB: dataEUR.rates.RUB ? dataEUR.rates.RUB : 0,
-          },
-        });
-      }),
-      map(() => this.exchangeRates)
-    );
+          };
+        }),
+        concatMap(() =>
+          this.http.get<ApiData>(this.apiUrl + '?from=USD&to=RUB')
+        ),
+        tap((dataUSDtoRUB) => {
+          this.exchangeRates = {
+            ...this.exchangeRates,
+            USD: {
+              ...this.exchangeRates.USD,
+              RUB: dataUSDtoRUB.info.rate ?? 0,
+            },
+          };
+        }),
+        concatMap(() =>
+          this.http.get<ApiData>(this.apiUrl + '?from=EUR&to=USD')
+        ),
+        tap((dataEURtoUSD) => {
+          this.exchangeRates = {
+            ...this.exchangeRates,
+            EUR: {
+              ...this.exchangeRates.EUR,
+              USD: dataEURtoUSD.info.rate ?? 0,
+            },
+          };
+        }),
+        concatMap(() =>
+          this.http.get<ApiData>(this.apiUrl + '?from=EUR&to=RUB')
+        ),
+        tap((dataEURtoRUB) => {
+          this.exchangeRates = {
+            ...this.exchangeRates,
+            EUR: {
+              ...this.exchangeRates.EUR,
+              RUB: dataEURtoRUB.info.rate ?? 0,
+            },
+          };
+        }),
+        concatMap(() =>
+          this.http.get<ApiData>(this.apiUrl + '?from=RUB&to=USD')
+        ),
+        tap((dataRUBtoUSD) => {
+          this.exchangeRates = {
+            ...this.exchangeRates,
+            RUB: {
+              ...this.exchangeRates.RUB,
+              USD: dataRUBtoUSD.info.rate ?? 0,
+            },
+          };
+        }),
+        concatMap(() =>
+          this.http.get<ApiData>(this.apiUrl + '?from=RUB&to=EUR')
+        ),
+        tap((dataRUBtoEUR) => {
+          this.exchangeRates = {
+            ...this.exchangeRates,
+            RUB: {
+              ...this.exchangeRates.RUB,
+              USD: dataRUBtoEUR.info.rate ?? 0,
+            },
+          };
+        })
+      )
+      .pipe(map(() => this.exchangeRates));
   }
 }
