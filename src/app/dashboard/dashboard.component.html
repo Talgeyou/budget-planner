@@ -1,6 +1,23 @@
 <div class="dashboard">
-  <app-money-total [title]="'Total Revenues'" [rubValue]="totalRevenues.RUB" [usdValue]="totalRevenues.USD" [eurValue]="totalRevenues.EUR" [period]="'Monthly'"></app-money-total>
-  <app-money-total [title]="'Total Consumptions'" [rubValue]="totalConsumptions.RUB" [usdValue]="totalConsumptions.USD" [eurValue]="totalConsumptions.EUR" [period]="'Monthly'"></app-money-total>
-      <app-money-total [title]="'Money Left'" [rubValue]="totalLeft.RUB" [usdValue]="totalLeft.USD" [eurValue]="totalLeft.EUR" [period]="'Monthly'"></app-money-total>
-      
+    <app-money-total
+        [title]="'Total Revenues'"
+        [rubValue]="totalRevenues.RUB"
+        [usdValue]="totalRevenues.USD"
+        [eurValue]="totalRevenues.EUR"
+        [period]="'Monthly'"
+    ></app-money-total>
+    <app-money-total
+        [title]="'Total Consumptions'"
+        [rubValue]="totalConsumptions.RUB"
+        [usdValue]="totalConsumptions.USD"
+        [eurValue]="totalConsumptions.EUR"
+        [period]="'Monthly'"
+    ></app-money-total>
+    <app-money-total
+        [title]="'Money Left'"
+        [rubValue]="totalLeft.RUB"
+        [usdValue]="totalLeft.USD"
+        [eurValue]="totalLeft.EUR"
+        [period]="'Monthly'"
+    ></app-money-total>
 </div>

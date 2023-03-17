@@ -1,51 +1,52 @@
 .sidebar {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  width: 200px;
-  &-burger {
-    display: none;
-  }
-  &-navigation {
-    &-links {
-      &-link {
-        &__item {
-          padding: 0.5em;
-          transition: border-right 0.1s ease-in-out, transform 0.3s ease-in-out;
-          &:hover {
-            transform: translateX(20px);
-          }
-        }
-        &.active > &__item {
-          border-right: solid #1a237e 3px;
-        }
-
-        &:not(.active) > &__item:hover {
-          border-right: solid #534bae 3px;
-        }
-      }
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    &-burger {
+        display: none;
     }
-  }
+    &-navigation {
+        &-links {
+            &-link {
+                &__item {
+                    padding: 0.5em;
+                    transition: border-right 0.1s ease-in-out,
+                        transform 0.3s ease-in-out;
+                    &:hover {
+                        transform: translateX(20px);
+                    }
+                }
+                &.active > &__item {
+                    border-right: solid #1a237e 3px;
+                }
+
+                &:not(.active) > &__item:hover {
+                    border-right: solid #534bae 3px;
+                }
+            }
+        }
+    }
 }
 
 @media (max-width: 768px) {
-  .sidebar {
-    background-color: #ffffff;
-    position: fixed;
-    width: 0px;
-    transition: width 0.3s ease-in-out;
-    &.active {
-      width: 100vw;
+    .sidebar {
+        background-color: #ffffff;
+        position: fixed;
+        width: 0px;
+        transition: width 0.3s ease-in-out;
+        &.active {
+            width: 100vw;
+        }
+        &-navigation {
+            transform: translateX(-200px);
+            transition: transform 0.3s ease-in-out;
+        }
+        &-burger {
+            display: block;
+        }
+        &.active &-navigation {
+            transform: translateX(0);
+        }
     }
-    &-navigation {
-      transform: translateX(-200px);
-      transition: transform 0.3s ease-in-out;
-    }
-    &-burger {
-      display: block;
-    }
-    &.active &-navigation {
-      transform: translateX(0);
-    }
-  }
 }

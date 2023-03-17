@@ -1,38 +1,38 @@
 <div class="money-total">
-  <div class="money-total-title">
-    {{ title }}
-  </div>
-  <div class="money-total-period">
-    <select
-      id="money-{{ title }}-period-select"
-      class="money-total-period__select"
-      [(ngModel)]="period"
-      (input)="onPeriodChange($event)"
-      name="money{{ title }}Period"
-    >
-      <option vale="Daily">Daily</option>
-      <option vale="Monthly">Monthly</option>
-      <option vale="Annualy">Annualy</option></select
-    ><label class="money-total-period__label"><span>Period</span></label>
-  </div>
-  <div class="money-total-values">
-    <div *ngIf="rubValue !== undefined" class="money-total-values-item">
-      <span class="money-total-values-item__value">{{
-        getValue(rubValue) | number: "1.2-2"
-      }}</span>
-      <span class="money-total-values-item__currency">RUB</span>
+    <div class="money-total-title">
+        {{ title }}
     </div>
-    <div *ngIf="usdValue !== undefined" class="money-total-values-item">
-      <span class="money-total-values-item__value">{{
-        getValue(usdValue) | number: "1.2-2"
-      }}</span>
-      <span class="money-total-values-item__currency">USD</span>
+    <div class="money-total-period">
+        <select
+            id="money-{{ title }}-period-select"
+            class="money-total-period__select"
+            [(ngModel)]="period"
+            (input)="onPeriodChange($event)"
+            name="money{{ title }}Period"
+        >
+            <option vale="Daily">Daily</option>
+            <option vale="Monthly">Monthly</option>
+            <option vale="Annualy">Annualy</option></select
+        ><label class="money-total-period__label"><span>Period</span></label>
     </div>
-    <div *ngIf="eurValue !== undefined" class="money-total-values-item">
-      <span class="money-total-values-item__value">{{
-        getValue(eurValue) | number: "1.2-2"
-      }}</span>
-      <span class="money-total-values-item__currency">EUR</span>
+    <div class="money-total-values">
+        <div *ngIf="rubValue !== undefined" class="money-total-values-item">
+            <span class="money-total-values-item__value">{{
+                getValue(rubValue) | number : '1.2-2'
+            }}</span>
+            <span class="money-total-values-item__currency">RUB</span>
+        </div>
+        <div *ngIf="usdValue !== undefined" class="money-total-values-item">
+            <span class="money-total-values-item__value">{{
+                getValue(usdValue) | number : '1.2-2'
+            }}</span>
+            <span class="money-total-values-item__currency">USD</span>
+        </div>
+        <div *ngIf="eurValue !== undefined" class="money-total-values-item">
+            <span class="money-total-values-item__value">{{
+                getValue(eurValue) | number : '1.2-2'
+            }}</span>
+            <span class="money-total-values-item__currency">EUR</span>
+        </div>
     </div>
-  </div>
 </div>

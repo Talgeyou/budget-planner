@@ -1,66 +1,66 @@
 .money-card {
-  background-color: #212121;
-  color: #ffffff;
-  &-header {
-    text-align: center;
-    background-color: #000000;
-    padding: 0.5em;
-  }
-  &-body {
-    padding: 0.5em;
+    background-color: #212121;
+    color: #ffffff;
+    &-header {
+        text-align: center;
+        background-color: #000000;
+        padding: 0.5em;
+    }
+    &-body {
+        padding: 0.5em;
 
-    display: grid;
-    &-value,
-    &-period {
-      display: flex;
-      justify-content: space-between;
-      &__input,
-      &__select {
-        width: 33%;
-        color: #000000;
-        background-color: #ffffff;
-        padding: 0;
-        &:focus {
-          padding: 0;
+        display: grid;
+        &-value,
+        &-period {
+            display: flex;
+            justify-content: space-between;
+            &__input,
+            &__select {
+                width: 33%;
+                color: #000000;
+                background-color: #ffffff;
+                padding: 0;
+                &:focus {
+                    padding: 0;
+                }
+            }
         }
-      }
-    }
 
-    &-value + &-period {
-      margin-top: 8px;
-    }
-
-    &-value {
-      &__value {
-        &.consumption {
-          color: #f05545;
+        &-value + &-period {
+            margin-top: 8px;
         }
-        &.revenue {
-          color: #4c8c4a;
-        }
-      }
-    }
-  }
 
-  &-actions {
-    padding: 0.5em;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.5em;
-    &-delete {
-      color: #ffffff;
-      background-color: #b71c1c;
-      &:hover {
-        color: #000000;
-        background-color: #f05545;
-      }
+        &-value {
+            &__value {
+                &.consumption {
+                    color: #f05545;
+                }
+                &.revenue {
+                    color: #4c8c4a;
+                }
+            }
+        }
     }
-    &-edit {
-      background-color: #f9a825;
-      color: #000000;
-      &:hover {
-        background-color: #ffd95a;
-      }
+
+    &-actions {
+        padding: 0.5em;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5em;
+        &-delete {
+            color: #ffffff;
+            background-color: #b71c1c;
+            &:hover {
+                color: #000000;
+                background-color: #f05545;
+            }
+        }
+        &-edit {
+            background-color: #f9a825;
+            color: #000000;
+            &:hover {
+                background-color: #ffd95a;
+            }
+        }
     }
-  }
 }

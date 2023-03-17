@@ -1,19 +1,19 @@
 <aside class="sidebar" [ngClass]="{ active: isActive }">
-  <button class="sidebar-burger" (click)="toggleSidebar()">Burger</button>
-  <nav class="sidebar-navigation">
-    <ul class="sidebar-navigation-links">
-      <a
-        *ngFor="let route of routes"
-        class="sidebar-navigation-links-link"
-        routerLink="/{{ route.path }}"
-        routerLinkActive="active"
-        ><li
-          *ngIf="route.path !== undefined && route.path.length > 0"
-          class="sidebar-navigation-links-link__item"
-        >
-          {{ route.path | titlecase }}
-        </li></a
-      >
-    </ul>
-  </nav>
+    <button class="sidebar-burger" (click)="toggleSidebar()">Burger</button>
+    <nav class="sidebar-navigation">
+        <ul class="sidebar-navigation-links">
+            <a
+                *ngFor="let route of routes"
+                class="sidebar-navigation-links-link"
+                routerLink="/{{ route.path }}"
+                routerLinkActive="active"
+                ><li
+                    *ngIf="route.path !== undefined && route.path.length > 0"
+                    class="sidebar-navigation-links-link__item"
+                >
+                    {{ route.path | titlecase }}
+                </li></a
+            >
+        </ul>
+    </nav>
 </aside>

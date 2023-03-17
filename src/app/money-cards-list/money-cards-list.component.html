@@ -1,9 +1,9 @@
 <div class="money-cards-list">
     <app-money-card
-      *ngFor="let moneyCard of moneyCards"
-      [moneyCard]="moneyCard"
-      [type]="type"
-      (onDelete)="handleMoneyCardDelete($event)"
-      (onEdit)="handleMoneyCardEdit($event)"
+        *ngFor="let moneyCard of moneyCards"
+        [moneyCard]="moneyCard"
+        [type]="type"
+        (onDelete)="handleMoneyCardDelete($event)"
+        (onEdit)="handleMoneyCardEdit($event)"
     ></app-money-card>
-  </div>
+</div>

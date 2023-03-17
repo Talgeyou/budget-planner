@@ -15,20 +15,20 @@ import { MoneyCardComponent } from './money-card/money-card.component';
 import { MoneyCardFormComponent } from './money-card-form/money-card-form.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
+    declarations: [
+        AppComponent,
 
-    MoneyTotalComponent,
-    SidebarComponent,
-    DashboardComponent,
-    ConsumptionsComponent,
-    RevenuesComponent,
-    MoneyCardsListComponent,
-    MoneyCardComponent,
-    MoneyCardFormComponent,
-  ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
-  providers: [],
-  bootstrap: [AppComponent],
+        MoneyTotalComponent,
+        SidebarComponent,
+        DashboardComponent,
+        ConsumptionsComponent,
+        RevenuesComponent,
+        MoneyCardsListComponent,
+        MoneyCardComponent,
+        MoneyCardFormComponent,
+    ],
+    imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+    providers: [],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}

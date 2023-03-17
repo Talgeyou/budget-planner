@@ -5,25 +5,25 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RevenuesComponent } from './revenues/revenues.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    pathMatch: 'full',
-    redirectTo: 'dashboard',
-  },
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
-    pathMatch: 'full',
-  },
-  {
-    path: 'consumptions',
-    component: ConsumptionsComponent,
-  },
-  { path: 'revenues', component: RevenuesComponent },
+    {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'dashboard',
+    },
+    {
+        path: 'dashboard',
+        component: DashboardComponent,
+        pathMatch: 'full',
+    },
+    {
+        path: 'consumptions',
+        component: ConsumptionsComponent,
+    },
+    { path: 'revenues', component: RevenuesComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule],
 })
 export class AppRoutingModule {}

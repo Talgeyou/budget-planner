@@ -1,20 +1,20 @@
 .money-card-form {
-  &__title {
-    margin-bottom: 1em;
-  }
-  &-field + &-field {
-    margin-top: 0.5em;
-  }
-
-  &-field {
-    width: 100%;
-
-    &__button {
-      background-color: #1a237e;
-      color: #ffffff;
-      &:hover {
-        background-color: #534bae;
-      }
+    &__title {
+        margin-bottom: 1em;
     }
-  }
+    &-field + &-field {
+        margin-top: 0.5em;
+    }
+
+    &-field {
+        width: 100%;
+
+        &__button {
+            background-color: #1a237e;
+            color: #ffffff;
+            &:hover {
+                background-color: #534bae;
+            }
+        }
+    }
 }

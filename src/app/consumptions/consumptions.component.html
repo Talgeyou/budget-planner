@@ -1,13 +1,20 @@
 <div class="consumptions">
     <app-money-total
-      [title]="totalTitle"
-      [rubValue]="totalValues.RUB"
-      [usdValue]="totalValues.USD"
-      [eurValue]="totalValues.EUR"
-      [period]="totalPeriod"
+        [title]="totalTitle"
+        [rubValue]="totalValues.RUB"
+        [usdValue]="totalValues.USD"
+        [eurValue]="totalValues.EUR"
+        [period]="totalPeriod"
     ></app-money-total>
     <div class="consumptions-content">
-        <app-money-card-form [type]="'consumptions'" (onMoneyCardAdd)="handleConsumptionAdd($event)"></app-money-card-form>
-    <app-money-cards-list [moneyCards]="consumptions" [type]="'consumptions'" (onMoneyCardsChange)="handleConsumptionsChange($event)"></app-money-cards-list>
+        <app-money-card-form
+            [type]="'consumptions'"
+            (onMoneyCardAdd)="handleConsumptionAdd($event)"
+        ></app-money-card-form>
+        <app-money-cards-list
+            [moneyCards]="consumptions"
+            [type]="'consumptions'"
+            (onMoneyCardsChange)="handleConsumptionsChange($event)"
+        ></app-money-cards-list>
     </div>
 </div>
